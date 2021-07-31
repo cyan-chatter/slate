@@ -66,7 +66,7 @@ const drawWithBrush = () => {
             drawCircle();
             isBrush = !isBrush;
             toggleBrush(isBrush);  
-        })        
+        }, { signal: controller.signal })        
     }
 }
 
