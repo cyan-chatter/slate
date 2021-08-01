@@ -29,21 +29,29 @@ body{
     font-size: 1.5em;
 }
 
-#brushModeBtn{
+#buttons{
     position: absolute;
-    background: rgba(40, 231, 190, 0.966);
-    min-width: 70px;
-    min-height: 70px;
     z-index: 1;
-    top: 5px;
-    right: 5px;
-    padding: 2px;
-    border-radius: 2rem;
-    font-family: 'Patrick Hand', cursive;
-    font-size: 1.5em;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
-#brushModeBtn:hover{
+.action-button{
+    background: rgba(40, 231, 190, 0.966);
+    min-width: 50px;
+    min-height: 50px;
+    padding: 2px;
+    border-radius: 1rem;
+    font-family: 'Patrick Hand', cursive;   
+    font-size: 2.5em;
+    margin: 5px;
+}
+
+.action-button:hover{
     cursor: pointer;
     background: rgba(0, 59, 47, 0.911);
     color:white;
@@ -60,3 +68,4 @@ body{
     left: 0;
     z-index: -1;
 }
+
