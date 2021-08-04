@@ -12,6 +12,19 @@ window.addEventListener('resize', ()=>{
     // setting canvas objects Removes all the drawing on the canvas
 });
 
+const colorPicker = document.getElementById('color-picker');
+
+for(let i=0; i<24; ++i){
+    const colordiv = document.createElement("DIV");
+    colordiv.className = 'color';
+    colordiv.id = 'color' + i;
+    colordiv.hue = i*15;    
+    colordiv.style.background = `hsl(${i*15},100%,75%)`;
+    colorPicker.appendChild(colordiv);
+}
+
+var r = document.querySelector(':root');
+
 const mouse = {
     x:undefined,
     y:undefined
@@ -121,4 +134,14 @@ document.getElementById('eraserBtn').addEventListener('click', () => {
 })
 document.getElementById('brushBtn').addEventListener('click', () => {
     isEraser = false;
+})
+
+document.querySelectorAll('.color').forEach((e)=>{
+    e.addEventListener('click', (el) => {
+        // let hue = parseInt(el.target.id[el.target.id.length - 1]) * 15;
+        // console.log(el.target.id[el.target.id.length - 1]);
+        console.log(el.target.hue);
+        fill = `hsl(${el.target.hue},100%,75%)`;
+        r.style.setProperty('--defcolor', fill);
+    })
 })

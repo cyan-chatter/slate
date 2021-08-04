@@ -1,10 +1,13 @@
+:root{
+    --defcolor: rgba(40, 231, 190, 1);
+}
 html{
-    background: rgba(40, 231, 190, 1);
+    background: var(--defcolor);
 }
 
 body{
     font-family: 'Patrick Hand', cursive;
-    border: 5px solid rgba(40, 231, 190, 1);
+    border: 5px solid var(--defcolor);
     position: relative;
     height: 99vh;
     width: 99vw;
@@ -17,8 +20,8 @@ body{
 
 #header{
     position: absolute;
-    background: rgba(40, 231, 190, 1);
-    min-width: 100px;
+    background: var(--defcolor);
+    min-width: 50px;
     min-height: 30px;
     z-index: 1;
     top: 0;
@@ -36,19 +39,19 @@ body{
     right: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
+    justify-content: flex-start;
+    align-items:flex-end;
 }
 
 .action-button{
-    background: rgba(40, 231, 190, 0.966);
+    background: var(--defcolor);
     min-width: 50px;
-    min-height: 50px;
+    min-height: 40px;
     padding: 2px;
     border-radius: 1rem;
     font-family: 'Patrick Hand', cursive;   
     font-size: 2.5em;
-    margin: 5px;
+    margin: 2px;
 }
 
 .action-button:hover{
@@ -67,5 +70,37 @@ body{
     top: 0;
     left: 0;
     z-index: -1;
+}
+
+.color{
+    min-width: 20px;
+    width: auto;
+    max-width: 40px;
+    height: 90%;
+    border-radius: 0.5rem;
+    margin: 5px;
+    border: 1px white solid;
+    flex:1;
+}
+
+.color:hover{
+    cursor: pointer;
+    border: 4px white solid;
+}
+
+#color-picker{
+    position: absolute;
+    bottom: 6px;
+    right: 2px;
+    min-width: 150px;
+    width: 98vw;
+    height: 50px;
+    padding: 2px;
+    margin: 3px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
