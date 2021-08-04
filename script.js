@@ -41,6 +41,20 @@ const attachBrush = (event) => {
     else drawCircle(esize,'black');
 }
 
+const drawLine = (ax,ay,size=5,fill='cyan') => {
+    ctx.strokeStyle = fill;
+    ctx.lineWidth = size;
+    ctx.lineTo(ax,ay);
+    ctx.stroke();
+}
+
+const attachPen = (event) => {
+    mouse.x = event.x;
+    mouse.y = event.y;
+    if(!isEraser) drawLine(mouse.x,mouse.y,size,fill);
+    else drawLine(mouse.x,mouse.y,esize,'black');
+}
+
 let controller = new AbortController();
 
 document.getElementById('brushModeBtn').addEventListener('click', () => {
@@ -54,25 +68,30 @@ document.getElementById('brushModeBtn').addEventListener('click', () => {
 })
 
 const drawWithBrush = () => {
+
     if(mode){
-        canvas.addEventListener('mousedown', () => isBrush = true, { signal: controller.signal });
-        canvas.addEventListener('mouseup', () => isBrush = false, { signal: controller.signal });
-        canvas.addEventListener('mousemove', (event) => {
+        canvas.addEventListener('mousedown', (event) => {
+             isBrush = true; 
+             ctx.beginPath();
+        }, { signal: controller.signal });
+        canvas.addEventListener('mouseup', () => {
+             isBrush = false; 
+        }, { signal: controller.signal });
+        canvas.addEventListener('mousemove', (event) => {        
             if(isBrush){
-                let n = 10;
-                while(n--){
-                    attachBrush(event);
-                }
+                attachPen(event);
             }
         }, { signal: controller.signal });    
     }
     else{
         const toggleBrush = (isBrush) => {
-            if(isBrush) canvas.addEventListener('mousemove', attachBrush, { signal: controller.signal });
-            else canvas.removeEventListener('mousemove', attachBrush, { signal: controller.signal });
+            if(isBrush){
+                ctx.beginPath();
+                canvas.addEventListener('mousemove', attachPen, { signal: controller.signal });
+            } 
+            else canvas.removeEventListener('mousemove', attachPen, { signal: controller.signal });
         }
         canvas.addEventListener('click', ()=>{
-            drawCircle(size,fill);
             isBrush = !isBrush;
             toggleBrush(isBrush);  
         }, { signal: controller.signal })        
