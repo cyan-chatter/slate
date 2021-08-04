@@ -10,7 +10,7 @@ body{
     border: 5px solid var(--defcolor);
     position: relative;
     height: 99vh;
-    width: 99vw;
+    width: 99.3vw;
     margin:0px;
     z-index: 1;
     scrollbar-width: 0px;
