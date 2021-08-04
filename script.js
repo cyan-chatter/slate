@@ -19,7 +19,8 @@ for(let i=0; i<24; ++i){
     colordiv.className = 'color';
     colordiv.id = 'color' + i;
     colordiv.hue = i*15;    
-    colordiv.style.background = `hsl(${i*15},100%,75%)`;
+    if(i%2 == 1) colordiv.style.background = `hsl(${i*15},100%,70%)`;
+    else colordiv.style.background = `hsl(${i*15},100%,75%)`;
     colorPicker.appendChild(colordiv);
 }
 
@@ -138,10 +139,10 @@ document.getElementById('brushBtn').addEventListener('click', () => {
 
 document.querySelectorAll('.color').forEach((e)=>{
     e.addEventListener('click', (el) => {
-        // let hue = parseInt(el.target.id[el.target.id.length - 1]) * 15;
-        // console.log(el.target.id[el.target.id.length - 1]);
+        let i = Math.floor(el.target.hue/15);
         console.log(el.target.hue);
-        fill = `hsl(${el.target.hue},100%,75%)`;
+        if(i%2 == 1) fill = `hsl(${el.target.hue},100%,70%)`;
+        else fill = `hsl(${el.target.hue},100%,75%)`;
         r.style.setProperty('--defcolor', fill);
     })
 })
