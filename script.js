@@ -41,13 +41,16 @@ let isEraser = false;
 
 const state = document.getElementById("state");
 
+const changeStateSize = () => {
+    state.style.fontSize = (isEraser ? (2 + (esize/10)) : (2 + (size/10))) + "em" ;
+}
+
+changeStateSize();
+
 const changeStateLogo = () => {
     if(isEraser) state.innerHTML = "&#9938;";
     else state.innerHTML = "&#128396;";
-}
-
-const changeStateSize = () => {
-    state.style.fontSize = (isEraser ? (2 + (esize/10)) : (2 + (size/10))) + "em" ;
+    changeStateSize();
 }
 
 const drawCircle = (size=5,fill='cyan') => {
