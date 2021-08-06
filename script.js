@@ -39,6 +39,17 @@ let mode = true;
 let isBrush = false;
 let isEraser = false;
 
+const state = document.getElementById("state");
+
+const changeStateLogo = () => {
+    if(isEraser) state.innerHTML = "&#9938;";
+    else state.innerHTML = "&#128396;";
+}
+
+const changeStateSize = () => {
+    state.style.fontSize = (isEraser ? (2 + (esize/10)) : (2 + (size/10))) + "em" ;
+}
+
 const drawCircle = (size=5,fill='cyan') => {
     let rad = size;
     ctx.fillStyle = fill;
@@ -123,18 +134,22 @@ document.getElementById('brushSizeIncBtn').addEventListener('click', () => {
     else ++size;
     if(size > 20) size = 20;
     if(esize > 20) esize = 20;
+    changeStateSize();
 })
 document.getElementById('brushSizeDecBtn').addEventListener('click', () => {
     if(isEraser) --esize;
     else --size;
     if(size < 1) size = 1;
     if(esize < 1) esize = 1;
+    changeStateSize();
 })
 document.getElementById('eraserBtn').addEventListener('click', () => {
     isEraser = true;
+    changeStateLogo();
 })
 document.getElementById('brushBtn').addEventListener('click', () => {
     isEraser = false;
+    changeStateLogo();
 })
 
 document.querySelectorAll('.color').forEach((e)=>{

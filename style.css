@@ -61,6 +61,21 @@ body{
     border: 1px white solid;
 }
 
+#state{
+    background: black;
+    min-width: 100px;
+    min-height: 100px;
+    padding: 5px;
+    border-radius: 1rem;
+    margin: 10px 2px 10px 10px;
+    font-size: 2em;
+    color: var(--defcolor);
+    text-align: center;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
 
 #canvas1{
     position: absolute;
