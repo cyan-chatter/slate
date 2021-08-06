@@ -86,7 +86,7 @@ body{
 }
 
 #state{
-    background: black;
+    background: rgba(0,0,0,0);
     min-width: 100px;
     min-height: 100px;
     padding: 5px;
