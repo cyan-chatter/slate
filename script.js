@@ -41,23 +41,32 @@ let isEraser = false;
 
 const state = document.getElementById("state");
 
+const constFontSize = 1.5;
+
 const changeStateSize = () => {
-    state.style.fontSize = (isEraser ? (2 + (esize/10)) : (2 + (size/10))) + "em" ;
+    state.style.fontSize = (constFontSize + ((isEraser ? esize : size)/10)) + "em" ;
 }
 
 changeStateSize();
 
+const brushLogo = document.getElementById("brushBtn").innerHTML;
+const eraserLogo = document.getElementById("eraserBtn").innerHTML;
+
 const changeStateLogo = () => {
-    if(isEraser) state.innerHTML = "&#9938;";
-    else state.innerHTML = "&#128396;";
+    state.style.opacity = 0;
+    setTimeout(function () { //timeout for fade effect
+        if(isEraser) state.innerHTML = eraserLogo;
+        else state.innerHTML = brushLogo;
+        state.style.opacity = 1 
+    }, 500)
     changeStateSize();
 }
-
+ 
 const drawCircle = (size=5,fill='cyan') => {
     let rad = size;
     ctx.fillStyle = fill;
     ctx.lineWidth = 5;
-    ctx.beginPath(); // lets js know a new shape is starting ie disconnected from the prev shape
+    ctx.beginPath(); 
     ctx.arc(mouse.x,mouse.y,rad,0,Math.PI*2);
     ctx.fill();    
 }
@@ -86,13 +95,12 @@ const attachPen = (event) => {
 let controller = new AbortController();
 
 document.getElementById('brushModeBtn').addEventListener('click', () => {
-    //console.log('Before: ', 'brush: ' + isBrush, 'mode: ' + (mode?1:2));
     mode = !mode;
     isBrush = false;
     controller.abort();
     controller = new AbortController();
     drawWithBrush();
-    //console.log('After: ', 'brush: ' + isBrush, 'mode: ' + (mode?1:2));
+    document.getElementById('brushModeBtnWrapper').style.transform = `rotate(${mode ? 0 : 90}deg)`;
 })
 
 const drawWithBrush = () => {
@@ -129,9 +137,14 @@ const drawWithBrush = () => {
 drawWithBrush();
 
 
+let btnRotation = 0; //for ui button rotation
 document.getElementById('clearCanvasBtn').addEventListener('click', () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height); 
+    document.getElementById("clearCanvasBtnWrapper").style.transform=`rotate(${btnRotation - 360}deg)`;
+    btnRotation -= 360;
 })
+
+
 document.getElementById('brushSizeIncBtn').addEventListener('click', () => {
     if(isEraser) ++esize;
     else ++size;
@@ -164,3 +177,12 @@ document.querySelectorAll('.color').forEach((e)=>{
         r.style.setProperty('--defcolor', fill);
     })
 })
+
+document.getElementById("header").addEventListener('click', () => location.assign("https://github.com/cyan-chatter"));
+
+document.getElementById("header").addEventListener('mouseover', () => {
+    document.getElementById("header-tooltip").style.opacity = 1;
+});
+document.getElementById("header").addEventListener('mouseout', () => {
+    document.getElementById("header-tooltip").style.opacity = 0;
+});
