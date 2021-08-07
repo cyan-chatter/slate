@@ -37,7 +37,7 @@ body{
 
 #header:hover{
     cursor: pointer;
-    background: black;
+    background: rgba(0,0,0,0);
     color: var(--defcolor);
     box-shadow: 4px 0px 5px 1px var(--defcolor),
                 0px 4px 5px 1px var(--defcolor); 
@@ -70,7 +70,7 @@ body{
 
 .action-button:hover{
     cursor: pointer;
-    background: black;
+    background: rgba(0,0,0,0);
     color:var(--defcolor);
     border:1px solid black;
     box-shadow: 1px 0px 5px 1px var(--defcolor), 
@@ -87,17 +87,17 @@ body{
 
 #state{
     background: rgba(0,0,0,0);
-    min-width: 100px;
-    min-height: 100px;
-    padding: 5px;
+    position: absolute;
+    top: 60px;
+    left: 0px;
+    min-width: 70px;
+    min-height: 70px;
+    padding: 5px 5px 5px 0px;
     border-radius: 1rem;
-    margin: 10px 3px 10px 10px;
+    margin: 10px 10px 10px 3px;
     font-size: 2em;
     color: var(--defcolor);
     text-align: center;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
     opacity: 1;
     transition : 0.5s, opacity 0.4s ease-in-out;
 }
@@ -113,13 +113,14 @@ body{
 }
 
 .color{
-    min-width: 20px;
+    min-width: 30px;
     width: auto;
-    max-width: 40px;
     height: 90%;
+    max-width : 40px;
     border-radius: 0.8rem;
     margin: 5px;
-    flex:1;
+    flex: 1;
+    flex-shrink: 0;
     box-shadow: 3px 3px rgba(255, 255, 255, 0.5);
     transition: 0.7s;
 }
@@ -149,13 +150,15 @@ body{
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
+    flex-flow: row-reverse wrap-reverse;
+    background: rgba(0,0,0,0);
 }
 
 #header-tooltip{
     opacity: 0;
     color: var(--defcolor);
-    background: black;
+    background: rgba(0,0,0,0);
     position: absolute;
     top:50px;
     left:70px;
