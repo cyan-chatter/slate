@@ -6,23 +6,95 @@ canvas.height = window.innerHeight;
 ctx.fillStyle = 'white';
 ctx.fillRect(1, 1, 2, 2);
 
+/*
+
+to attribute:
+<div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+<a target="_blank" href="https://icons8.comundefined">Eraser</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+
+*/ 
+
+
 window.addEventListener('resize', ()=>{
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     // setting canvas objects Removes all the drawing on the canvas
 });
 
-const colorPicker = document.getElementById('color-picker');
+const colorPicker1 = document.getElementById('color-picker-1');
+const colorPicker2 = document.getElementById('color-picker-2');
 
-for(let i=0; i<24; ++i){
+const addHSLColorToPicker = (color,parent) => {
     const colordiv = document.createElement("DIV");
     colordiv.className = 'color';
-    colordiv.id = 'color' + i;
-    colordiv.hue = i*15;    
-    if(i%2 == 1) colordiv.style.background = `hsl(${i*15},100%,70%)`;
-    else colordiv.style.background = `hsl(${i*15},100%,75%)`;
-    colorPicker.appendChild(colordiv);
+    colordiv.id = 'color' + color.index;
+    colordiv.hue = color.hue; 
+    colordiv.sat = color.sat;   
+    colordiv.lit = color.lit;
+    colordiv.style.background = `hsl(${colordiv.hue},${colordiv.sat}%,${colordiv.lit}%)`; 
+    parent.appendChild(colordiv);
 }
+
+const whitecolor = {
+    index : 100,
+    hue : 0,
+    sat : 100,
+    lit : 100
+}
+
+const greycolor = {
+    index : 101,
+    hue : 180,
+    sat : 0,
+    lit : 70
+}
+
+const redcolor = {
+    index : 25,
+    hue : 0,
+    sat : 100,
+    lit : 65
+}
+
+for(let i=0; i<24; ++i){
+    const color = {
+        index : i,
+        hue : i*15,
+        sat : 100,
+        lit : 100
+    }
+
+    if(i%2 == 1){
+        color.lit = 70;
+    } 
+    else{
+        color.lit = 75;
+    }
+    addHSLColorToPicker(color,colorPicker1);
+
+    if(i===11) addHSLColorToPicker(whitecolor,colorPicker1);
+}
+
+for(let i=0; i<24; ++i){
+    const color = {
+        index : i+24,
+        hue : i*15,
+        sat : 100,
+        lit : 65
+    }
+
+    // if(i%2 == 1){
+    //     color.lit = 70;
+    // } 
+    // else{
+    //     color.lit = 75;
+    // }
+
+    addHSLColorToPicker(color,colorPicker2);
+    if(i===11) addHSLColorToPicker(greycolor,colorPicker2);
+}
+
+
 
 var r = document.querySelector(':root');
 
@@ -170,10 +242,7 @@ document.getElementById('brushBtn').addEventListener('click', () => {
 
 document.querySelectorAll('.color').forEach((e)=>{
     e.addEventListener('click', (el) => {
-        let i = Math.floor(el.target.hue/15);
-        console.log(el.target.hue);
-        if(i%2 == 1) fill = `hsl(${el.target.hue},100%,70%)`;
-        else fill = `hsl(${el.target.hue},100%,75%)`;
+        fill = `hsl(${el.target.hue},${el.target.sat}%,${el.target.lit}%)`;
         r.style.setProperty('--defcolor', fill);
     })
 })
