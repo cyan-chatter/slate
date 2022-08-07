@@ -1,50 +1,62 @@
-// try file for updates
+const iconbasepath = "utils/icons/";
+const iconMap = {
+  state: {
+    domId: "stateWrapper",
+    iconUrl: [`${iconbasepath}pencil.svg`, `${iconbasepath}eraser.svg`],
+    alt: ["&#128397;", "&#9938;"],
+  },
+  brush: {
+    domId: "brushBtnWrapper",
+    iconUrl: [`${iconbasepath}pencil.svg`],
+    alt: ["&#128397;"],
+  },
+  eraser: {
+    domId: "eraserBtnWrapper",
+    iconUrl: [`${iconbasepath}eraser.svg`],
+    alt: ["&#9938;"],
+  },
+  clear: {
+    domId: "clearCanvasBtnWrapper",
+    iconUrl: [`${iconbasepath}clear.svg`],
+    alt: ["&#11119;"],
+  },
+  save: {
+    domId: "saveBtnWrapper",
+    iconUrl: [`${iconbasepath}save.svg`],
+  },
+  up: {
+    domId: "brushSizeIncBtnWrapper",
+    iconUrl: [`${iconbasepath}up.svg`],
+    alt: ["&#11145;"],
+  },
+  down: {
+    domId: "brushSizeDecBtnWrapper",
+    iconUrl: [`${iconbasepath}down.svg`],
+    alt: ["&#11147;"],
+  },
+  mode: {
+    domId: "brushModeBtnWrapper",
+    iconUrl: [`${iconbasepath}mode1.svg`, `${iconbasepath}mode2.svg`],
+    alt: ["&#8652;"],
+  },
+};
 
-class Canvas{
-    constructor(canvas){
-        this.canvas = canvas;
-        this.ctx = canvas.getContext("2d");
-        this.width = canvas.width;
-        this.height = canvas.height;
-        this.centerX = this.width/2;
-        this.centerY = this.height/2;
-        this.radius = this.width/2;
-        this.angle = 0;
-        this.speed = 0.01;
-        this.color = "red";
-        this.draw();
+
+const attachIcons = () => {
+  for (const key in iconMap) {
+    const icon = iconMap[key];
+    const iconBtnWrapper = document.getElementById(icon.domId);
+    if (iconBtnWrapper) {
+      const iconImg = document.createElement("OBJECT");
+      iconImg.setAttribute("id", `${icon.domId}Icon`);
+      iconImg.setAttribute("class", "svg-icon");
+      iconImg.setAttribute("type", "image/svg+xml");
+      iconImg.setAttribute("data", icon.iconUrl[0]);
+      // iconImg.setAttribute("viewBox", "0 0 24 24");
+      // iconImg.setAttribute("xmlns", icon.iconUrl[0]);
+      iconBtnWrapper.appendChild(iconImg);
     }
-    draw(){
-        this.ctx.clearRect(0,0,this.width,this.height);
-        this.ctx.beginPath();
-        this.ctx.arc(this.centerX,this.centerY,this.radius,0,Math.PI*2);
-        this.ctx.fillStyle = this.color;
-        this.ctx.fill();
-        this.ctx.closePath();
-    }
-    update(){
-        this.angle += this.speed;
-        this.draw();
-    }
-}
+  }
+};
 
 
-class Pen{
-    constructor(pen){
-        this.pen = pen;
-        this.isPen = true;
-        this.isEraser = false;
-        this.size = 5;
-        this.fill = 'cyan';
-    }
-}
-
-class Brush{
-    constructor(brush){
-        this.brush = brush;
-        this.isBrush = true;
-        this.isEraser = false;
-        this.size = 5;
-        this.fill = 'cyan';
-    }
-}
