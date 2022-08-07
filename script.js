@@ -404,15 +404,14 @@ let btnRotation = 0; //for ui button rotation
 document.getElementById("clearCanvasBtn").addEventListener("click", () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   document.getElementById("clearCanvasBtnWrapper").style.transform = `rotate(${
-    btnRotation - 180
+    btnRotation + 180
   }deg)`;
-  btnRotation -= 180;
+  btnRotation += 180;
 });
 
 
 
 /* NOTES
-1. BUG: clear btn rotation animation not working
-2. FIXME: State Wrapper Flickers a bit from its centre when size is changed
-3. FIXME: colors overlap when window is resized to a smaller width
+1. FIXME: State Wrapper Flickers a bit from its centre when size is changed
+2. FIXME: colors overlap when window is resized to a smaller width
 */
