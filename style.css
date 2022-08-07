@@ -95,23 +95,6 @@ body{
     transition: 0.3s;
 }
 
-#state{
-    background: rgba(0,0,0,0);
-    position: absolute;
-    top: 60px;
-    left: 0px;
-    min-width: 70px;
-    min-height: 70px;
-    padding: 5px 5px 5px 0px;
-    border-radius: 1rem;
-    margin: 10px 10px 10px 3px;
-    font-size: 2em;
-    color: var(--defcolor);
-    text-align: center;
-    opacity: 1;
-    transition : 0.5s, opacity 0.4s ease-in-out;
-}
-
 #canvas1{
     position: absolute;
     background: black;
@@ -201,7 +184,7 @@ body{
     justify-content: center;
 }
 
-svg{
+#buttons svg{
     width: 80%;
     height: 80%;
     flex: 1;
@@ -213,6 +196,39 @@ svg{
     fill: var(--defcolor);
 }
 
-.stateLogoSvgClass{
+#state {
+    background: rgba(0, 0, 0, 0);
+    position: absolute;
+    bottom: 1em;
+    left: 1.5em;
+    min-width: 40px;
+    min-height: 40px;
+    padding: 5px 5px 5px 0px;
+    margin: 5px 5px 5px 0px;
+    color: var(--defcolor);
+    text-align: center;
+    opacity: 1;
+    transition: 0.5s, opacity 0.4s ease-in-out;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+#state-wrapper{
+    width: 3em;
+    height: 3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 2;
+    border: 1px solid var(--defcolor);
+    border-radius: 2rem;
+    padding: 5px;
+    transition: 0.2s ease-in-out;
+}
+
+.stateLogoSvg {
+    max-width: 3em;
+    max-height: 3em;
     fill: var(--defcolor)
 }
