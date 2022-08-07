@@ -157,6 +157,7 @@ body{
     /* flex-wrap: wrap; */
     flex-flow: row-reverse wrap-reverse;
     background: rgba(0,0,0,0);
+    overflow: hidden;
 }
 
 
