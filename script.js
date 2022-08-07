@@ -6,14 +6,77 @@ canvas.height = window.innerHeight;
 ctx.fillStyle = 'white';
 ctx.fillRect(1, 1, 2, 2);
 
-/*
+iconMap = {
+  state: {
+    domId: "state",
+    iconUrl: [
+      "https://img.icons8.com/external-kmg-design-glyph-kmg-design/32/000000/external-pen-education-kmg-design-glyph-kmg-design.png",
+      "https://img.icons8.com/ios-glyphs/30/000000/eraser.png",
+    ],
+    alt: ["&#128397;", "&#9938;"],
+  },
+  brush: {
+    domId: "brushBtn",
+    iconUrl: [
+      "https://img.icons8.com/external-kmg-design-glyph-kmg-design/32/000000/external-pen-education-kmg-design-glyph-kmg-design.png",
+    ],
+    alt: ["&#128397;"],
+  },
+  eraser: {
+    domId: "eraserBtn",
+    iconUrl: [
+      "https://img.icons8.com/ios-glyphs/30/000000/eraser.png",
+      "https://img.icons8.com/ios/50/000000/eraser.png",
+      "https://img.icons8.com/sf-ultralight-filled/50/000000/eraser.png",
+    ],
+    alt: ["&#9938;"],
+  },
+  clear: {
+    domId: "clearCanvasBtn",
+    iconUrl: [
+      "https://img.icons8.com/material-rounded/24/000000/rotate.png",
+      "https://img.icons8.com/pastel-glyph/64/000000/rotate-left.png",
+    ],
+    alt: ["&#11119;"],
+  },
+  save: {
+    domId: "saveBtn",
+    iconUrl: ["https://img.icons8.com/sf-black-filled/64/000000/save.png"],
+  },
+  up: {
+    domId: "brushSizeIncBtn",
+    iconUrl: ["https://img.icons8.com/sf-black-filled/32/000000/up.png"],
+    alt: ["&#11145;"],
+  },
+  down: {
+    domId: "brushSizeDecBtn",
+    iconUrl: ["https://img.icons8.com/sf-black/32/000000/down.png"],
+    alt: ["&#11147;"],
+  },
+  mode: {
+    domId: "brushModeBtn",
+    iconUrl: [
+      "https://img.icons8.com/external-royyan-wijaya-detailed-outline-royyan-wijaya/24/000000/external-toggle-off-interface-royyan-wijaya-detailed-outline-royyan-wijaya.png",
+      "https://img.icons8.com/external-royyan-wijaya-detailed-outline-royyan-wijaya/24/000000/external-toggle-on-interface-royyan-wijaya-detailed-outline-royyan-wijaya.png",
+    ],
+    alt: ["&#8652;"],
+  },
+};
 
-to attribute:
-<div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-<a target="_blank" href="https://icons8.comundefined">Eraser</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+const attachIcons = () => {
+    for (const key in iconMap){
+        const icon = iconMap[key]
+        const iconBtn = document.getElementById(icon.domId);
+        if(iconBtn){
+            const iconImg = document.createElement("IMG");
+            iconImg.setAttribute("id", `${icon.domId}Icon`);
+            iconImg.src = icon.iconUrl[0];
+            iconBtn.appendChild(iconImg);
+        }
+    }
+}
 
-*/ 
-
+attachIcons();
 
 window.addEventListener('resize', ()=>{
     canvas.width = window.innerWidth;
@@ -111,7 +174,10 @@ let mode = true;
 let isBrush = false;
 let isEraser = false;
 
+
 const state = document.getElementById("state");
+const stateIcon = document.getElementById("stateIcon");
+stateIcon.style.fill = fill;
 
 const constFontSize = 1.5;
 
@@ -119,21 +185,19 @@ const changeStateSize = () => {
     state.style.fontSize = (constFontSize + ((isEraser ? esize : size)/10)) + "em" ;
 }
 
-changeStateSize();
-
-const brushLogo = document.getElementById("brushBtn").innerHTML;
-const eraserLogo = document.getElementById("eraserBtn").innerHTML;
+// changeStateSize();
 
 const changeStateLogo = () => {
     state.style.opacity = 0;
     setTimeout(function () { //timeout for fade effect
-        if(isEraser) state.innerHTML = eraserLogo;
-        else state.innerHTML = brushLogo;
+        stateIcon.src = iconMap.state.iconUrl[isEraser ? 1 : 0]
         state.style.opacity = 1 
     }, 500)
     changeStateSize();
 }
- 
+
+
+
 const drawCircle = (size=5,fill='cyan') => {
     let rad = size;
     ctx.fillStyle = fill;
@@ -172,7 +236,7 @@ document.getElementById('brushModeBtn').addEventListener('click', () => {
     controller.abort();
     controller = new AbortController();
     drawWithBrush();
-    document.getElementById('brushModeBtnWrapper').style.transform = `rotate(${mode ? 0 : 90}deg)`;
+    document.getElementById('brushModeBtnIcon').src = iconMap.mode.iconUrl[mode ? 0 : 1];
 })
 
 const drawWithBrush = () => {
@@ -212,7 +276,7 @@ drawWithBrush();
 let btnRotation = 0; //for ui button rotation
 document.getElementById('clearCanvasBtn').addEventListener('click', () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height); 
-    document.getElementById("clearCanvasBtnWrapper").style.transform=`rotate(${btnRotation - 360}deg)`;
+    document.getElementById("clearCanvasBtnIcon").style.transform=`rotate(${btnRotation - 360}deg)`;
     btnRotation -= 360;
 })
 
