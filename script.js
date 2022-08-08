@@ -327,6 +327,8 @@ document.getElementById('brushModeBtn').addEventListener('click', () => {
     changeModeLogo(mode);
 })
 
+let wasDrawingOnMouseOut = false
+
 const drawWithBrush = () => {
 
     if(mode){
@@ -336,16 +338,24 @@ const drawWithBrush = () => {
              attachPen(event);
         }, { signal: controller.signal });
         document.addEventListener('mouseup', () => {
-             isBrush = false; 
+             isBrush = false;
+             wasDrawingOnMouseOut = false 
         }, { signal: controller.signal });
         canvas.addEventListener('mousemove', (event) => {        
             if(isBrush){
+                attachPen(event);
+            }
+            else if(wasDrawingOnMouseOut){
+                wasDrawingOnMouseOut = false;
+                isBrush = true;
+                ctx.beginPath();
                 attachPen(event);
             }
         }, { signal: controller.signal });
         canvas.addEventListener(
           "mouseout",
           () => {
+            if(isBrush) wasDrawingOnMouseOut = true
             isBrush = false;
           },
           { signal: controller.signal }
