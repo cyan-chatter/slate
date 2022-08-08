@@ -169,7 +169,13 @@ body{
     top:50px;
     left:70px;
     border-radius: 0.2rem;
-    transition: opacity 1s;
+    transition: 0.5s ease-in;
+    visibility: hidden;
+}
+
+#header:hover + #header-tooltip{
+    visibility: visible;
+    opacity: 1;
 }
 
 .text-wrapper{
