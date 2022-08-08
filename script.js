@@ -333,15 +333,23 @@ const drawWithBrush = () => {
         canvas.addEventListener('mousedown', (event) => {
              isBrush = true; 
              ctx.beginPath();
+             attachPen(event);
         }, { signal: controller.signal });
-        canvas.addEventListener('mouseup', () => {
+        document.addEventListener('mouseup', () => {
              isBrush = false; 
         }, { signal: controller.signal });
         canvas.addEventListener('mousemove', (event) => {        
             if(isBrush){
                 attachPen(event);
             }
-        }, { signal: controller.signal });    
+        }, { signal: controller.signal });
+        canvas.addEventListener(
+          "mouseout",
+          () => {
+            isBrush = false;
+          },
+          { signal: controller.signal }
+        );    
     }
     else{
         const toggleBrush = (isBrush) => {
