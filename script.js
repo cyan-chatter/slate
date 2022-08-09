@@ -345,12 +345,12 @@ const drawWithBrush = () => {
             if(isBrush){
                 attachPen(event);
             }
-            else if(wasDrawingOnMouseOut){
-                wasDrawingOnMouseOut = false;
-                isBrush = true;
-                ctx.beginPath();
-                attachPen(event);
-            }
+            // else if(wasDrawingOnMouseOut){
+            //     wasDrawingOnMouseOut = false;
+            //     isBrush = true;
+            //     ctx.beginPath();
+            //     attachPen(event);
+            // }
         }, { signal: controller.signal });
         canvas.addEventListener(
           "mouseout",
@@ -372,7 +372,15 @@ const drawWithBrush = () => {
         canvas.addEventListener('click', ()=>{
             isBrush = !isBrush;
             toggleBrush(isBrush);  
-        }, { signal: controller.signal })        
+        }, { signal: controller.signal })
+        canvas.addEventListener(
+          "mouseout",
+          () => {
+            isBrush = false;
+            toggleBrush(isBrush);
+          },
+          { signal: controller.signal }
+        );        
     }
 }
 
