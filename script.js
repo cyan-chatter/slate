@@ -438,6 +438,9 @@ document.getElementById("clearCanvasBtn").addEventListener("click", () => {
 
 
 /* NOTES
+
+BUG: On using mouseout, sometimes there is a very weird bug: the drawn line literally starts to disappear as the mouse is moved over (clicked) -> might be duw to the style.visibilty property ERTY
+
 1. FIXME: State Wrapper Flickers a bit from its centre when size is changed
 2. FIXME: as colors overlap when window is resized to a smaller width, so, for now, few colours will disappear as window width is decreased
 */
