@@ -305,8 +305,11 @@ const attachBrush = (event) => {
 const drawLine = (ax,ay,size=5,fill='cyan') => {
     ctx.strokeStyle = fill;
     ctx.lineWidth = size;
+    ctx.lineCap = "round";
     ctx.lineTo(ax,ay);
     ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(ax,ay);
 }
 
 const attachPen = (event) => {
@@ -334,11 +337,11 @@ const drawWithBrush = () => {
     if(mode){
         canvas.addEventListener('mousedown', (event) => {
              isBrush = true; 
-             ctx.beginPath();
              attachPen(event);
         }, { signal: controller.signal });
         document.addEventListener('mouseup', () => {
              isBrush = false;
+             ctx.beginPath();
              wasDrawingOnMouseOut = false 
         }, { signal: controller.signal });
         canvas.addEventListener('mousemove', (event) => {        
