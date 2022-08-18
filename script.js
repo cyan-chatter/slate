@@ -446,7 +446,7 @@ document.getElementById("clearCanvasBtn").addEventListener("click", () => {
 /* NOTES
 
 BUG: the drawn line literally starts to disappear as the mouse is moved over -> might be duw to the style.visibilty property or some sub path override issue, might also be due to the SVG icons added
-# CAUSE: UNKNOWN, #OCCURENCE: RARE, #FIX: UNKNOWN. #PRIORITIY: HIGH, #IMPACT: HIGH, #NOTE: ISSUE MIGHT ALREADY BE RESOLVED AS FREQUENCY OF RECENT OCCURENCES HAS DROPPED TO ZERO
+# CAUSE: UNKNOWN, #OCCURENCE: RARE, #FIX: UNKNOWN. #PRIORITIY: HIGH, #IMPACT: HIGH
 
 1. FIXME: State Wrapper Flickers a bit from its centre when size is changed
 2. FIXME: as colors overlap when window is resized to a smaller width, so, for now, few colours will disappear as window width is decreased
