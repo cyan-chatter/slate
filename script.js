@@ -307,11 +307,8 @@ const attachBrush = (event) => {
 const drawLine = (ax,ay,size=5,fill='cyan') => {
     ctx.strokeStyle = fill;
     ctx.lineWidth = size;
-    // ctx.lineCap = "round";
     ctx.lineTo(ax,ay);
     ctx.stroke();
-    // ctx.beginPath();
-    // ctx.moveTo(ax,ay);
 }
 
 const attachPen = (event) => {
@@ -332,58 +329,52 @@ document.getElementById('brushModeBtn').addEventListener('click', () => {
     changeModeLogo(mode);
 })
 
-let wasDrawingOnMouseOut = false
-
 const drawWithBrush = () => {
 
     if(mode){
         canvas.addEventListener('mousedown', (event) => {
-             isBrush = true;
-             ctx.beginPath(); 
-             attachPen(event);
+            isBrush = true;
+            ctx.beginPath(); 
         }, { signal: controller.signal });
-        document.addEventListener('mouseup', () => {
-             isBrush = false;
-             ctx.beginPath();
-             wasDrawingOnMouseOut = false 
+        canvas.addEventListener('mouseup', () => {
+            isBrush = false; 
         }, { signal: controller.signal });
         canvas.addEventListener('mousemove', (event) => {        
             if(isBrush){
-                attachPen(event);
+              attachPen(event);
             }
-            // else if(wasDrawingOnMouseOut){
-            //     wasDrawingOnMouseOut = false;
-            //     isBrush = true;
-            //     ctx.beginPath();
-            //     attachPen(event);
-            // }
         }, { signal: controller.signal });
-        canvas.addEventListener(
-          "mouseout",
-          () => {
-            if(isBrush) wasDrawingOnMouseOut = true
-            isBrush = false;
-          },
-          { signal: controller.signal }
-        );    
+        // canvas.addEventListener(
+        //   "mouseout",
+        //   () => {
+        //     isBrush = false;
+        //   },
+        //   { signal: controller.signal }
+        // );    
     }
-    else{
-        const toggleBrush = (isBrush) => {
-            if(isBrush){
-                ctx.beginPath();
-                canvas.addEventListener('mousemove', attachPen, { signal: controller.signal });
-            } 
-            else canvas.removeEventListener('mousemove', attachPen, { signal: controller.signal });
-        }
+    else{      
         canvas.addEventListener('click', ()=>{
             isBrush = !isBrush;
-            toggleBrush(isBrush);  
-        }, { signal: controller.signal })
+            ctx.beginPath();  
+        }, 
+        { 
+          signal: controller.signal 
+        })
+        canvas.addEventListener(
+          "mousemove",
+          (event) => {
+            if (isBrush) {
+              attachPen(event);
+            }
+          },
+          {
+            signal: controller.signal,
+          }
+        );
         canvas.addEventListener(
           "mouseout",
           () => {
             isBrush = false;
-            toggleBrush(isBrush);
           },
           { signal: controller.signal }
         );        
@@ -434,6 +425,8 @@ document.getElementById("header").addEventListener('mouseout', () => {
 
 let btnRotation = 0; //for ui button rotation
 document.getElementById("clearCanvasBtn").addEventListener("click", () => {
+  ctx.beginPath();
+  isBrush = false;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   document.getElementById("clearCanvasBtnWrapper").style.transform = `rotate(${
     btnRotation + 180
@@ -447,6 +440,7 @@ document.getElementById("clearCanvasBtn").addEventListener("click", () => {
 
 BUG: the drawn line literally starts to disappear as the mouse is moved over -> might be duw to the style.visibilty property or some sub path override issue, might also be due to the SVG icons added
 # CAUSE: UNKNOWN, #OCCURENCE: RARE, #FIX: UNKNOWN. #PRIORITIY: HIGH, #IMPACT: HIGH
+# UNABLE TO FIND ANY POSSIBLE CAUSES : MIGHT BE AN INTERNAL RACE CONDITION : POSSIBLY BECAUSE OF THE BEGIN PATH IN MOUSE DOWN
 
 1. FIXME: State Wrapper Flickers a bit from its centre when size is changed
 2. FIXME: as colors overlap when window is resized to a smaller width, so, for now, few colours will disappear as window width is decreased
