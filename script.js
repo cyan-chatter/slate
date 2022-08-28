@@ -484,9 +484,9 @@ document.getElementById("bgModeBtn").addEventListener('click', () => {
   else{
       bgcolordiv = {
         index: 100,
-        hue: 0,
-        sat: 0,
-        lit: 0,
+        hue: 120,
+        sat: 4,
+        lit: 22,
       }
   }
   if (bgcolor === "white") bgcolor = "black";
