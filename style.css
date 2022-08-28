@@ -1,5 +1,6 @@
 :root{
     --defcolor: rgba(40, 231, 190, 1);
+    --backcolor: black;
 }
 html{
     background: var(--defcolor);
@@ -37,7 +38,7 @@ body{
 
 #header:hover{
     cursor: pointer;
-    background: rgba(0,0,0,0);
+    background: var(--backcolor);
     color: var(--defcolor);
     box-shadow: 4px 0px 5px 1px var(--defcolor),
                 0px 4px 5px 1px var(--defcolor); 
@@ -79,9 +80,9 @@ body{
 
 .action-button:hover{
     cursor: pointer;
-    background: rgba(0,0,0,0);
+    background: var(--backcolor);
     color: var(--defcolor);
-    border:1px solid black;
+    border:1px solid var(--backcolor);
     box-shadow: 1px 0px 5px 1px var(--defcolor), 
                 -1px 0px 5px 1px var(--defcolor),
                 0px 1px 5px 1px var(--defcolor), 
@@ -96,7 +97,7 @@ body{
 
 #canvas1{
     position: absolute;
-    background: black;
+    background: var(--backcolor);
     width: 100%;
     height: 100%;
     top: 0;
@@ -120,8 +121,8 @@ body{
 .color:hover{
     cursor: pointer;
     border-radius: 0.3rem;
-    box-shadow: 2px 2px black;
-    border: 3px black solid;
+    box-shadow: 2px 2px var(--backcolor);
+    border: 3px var(--backcolor) solid;
     margin: auto;
 }
 
@@ -154,7 +155,7 @@ body{
     align-items: center;
     /* flex-wrap: wrap; */
     flex-flow: row-reverse wrap-reverse;
-    background: rgba(0,0,0,0);
+    background: var(--backcolor);
     overflow: hidden;
 }
 
@@ -162,7 +163,7 @@ body{
 #header-tooltip{
     opacity: 0;
     color: var(--defcolor);
-    background: rgba(0,0,0,0);
+    background: var(--backcolor);
     position: absolute;
     top:50px;
     left:70px;
@@ -203,7 +204,7 @@ body{
 }
 
 #state {
-    background: rgba(0, 0, 0, 0);
+    background: var(--backcolor);
     position: absolute;
     bottom: 1em;
     left: 1.5em;
