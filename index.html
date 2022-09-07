@@ -55,22 +55,22 @@
         <div id="color-picker-1" class="color-picker-tab">
             <!-- <div id="color1" class="color"></div> -->
         </div>
+        <div class="colorpicker" id="colorpicker">
+            <span key="picker" class="picker" id="picker">
+                <div class="slider-container">
+                    <input name="sat" id="sat" type="range" min="1" max="100" value="60" class="slider sat slider-thin" />
+                </div>
+                <div class="slider-container">
+                    <input name="hue" type="range" min="1" max="300" value="130" class="slider hue" />
+                </div>
+                <div class="slider-container">
+                    <input name="light" type="range" min="1" max="100" value="55" class="slider light slider-thin" />
+                </div>
+            </span>
+        </div>
         <div id="color-picker-2" class="color-picker-tab">
             <!-- <div id="color1" class="color"></div> -->
         </div>
-    </div>
-    <div class="colorpicker" id="colorpicker">
-        <span key="picker" class="picker" id="picker">
-            <div class="slider-container">
-                <input name="sat" id="sat" type="range" min="1" max="100" value="60" class="slider sat slider-thin" />
-            </div>
-            <div class="slider-container">
-                <input name="hue" type="range" min="1" max="300" value="130" class="slider hue" />
-            </div>
-            <div class="slider-container">
-                <input name="light" type="range" min="1" max="100" value="55" class="slider light slider-thin" />
-            </div>
-        </span>
     </div>
     <canvas id="canvas1"></canvas>
     <script src="script.js"></script>

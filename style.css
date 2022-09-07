@@ -107,56 +107,57 @@ body{
 }
 
 .color{
-    min-width: 30px;
-    width: auto;
-    height: 90%;
-    max-width : 40px;
-    border-radius: 0.6rem;
-    margin: 5px;
-    flex: 1;
-    flex-shrink: 0;
-    box-shadow: 3px 3px rgba(255, 255, 255, 0.5);
-    transition: 0.7s;
+    height: 30px;
+    width: 30px;
+    border-radius: 1rem;
+    margin: 2px;
+    box-shadow: 0px 0px rgba(255, 255, 255, 0.5);
+    transition: 0.5s;
 }
 
 .color:hover{
     cursor: pointer;
-    border-radius: 0.3rem;
+    border-radius: 0.2rem;
     box-shadow: 2px 2px var(--backcolor);
     border: 3px var(--backcolor) solid;
-    margin: auto;
+    
 }
 
 .color:active{
-    height: 110%;
+    height: 40px;
     transition: 0.5s;
 }
 
 #color-picker-div{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    height: 100px;
+    justify-content: center;
+    height: 90px;
     position: absolute;
-    bottom: 0%;
+    bottom: 2%;
     left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, 0%);
+    transform: translate(-50%, 0%);
+    margin-bottom: 5px;
+    overflow: hidden;
 }
 
 .color-picker-tab{
-    max-width: 80vw;
-    width: 1000px;
-    height: 50px;
-    padding: 2px;
-    margin: 3px;
-    display: flex;
+    min-width: 40px;
+    width: 20vw;    
+    /* display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
-    /* flex-wrap: wrap; */
-    flex-flow: row-reverse wrap-reverse;
-    background: var(--backcolor);
+    align-items: flex-start;
+    flex-wrap: wrap;
+    */
+    flex: 1;
+    background-color: transparent;
+    margin: 5px;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    grid-template-rows: auto auto;
     overflow: hidden;
 }
 
@@ -242,14 +243,10 @@ body{
 }
 
 .colorpicker {
-    position: absolute;
-    bottom: 20%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
     z-index: 10;
     display: block;
-    width: 75%;
+    min-width: 500px;    
+    margin: 5px;
     height: auto;
     background-color: transparent;
     transition: all 0.8s;
@@ -257,6 +254,7 @@ body{
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    flex: 3;
 }
 
 .picker {
@@ -271,7 +269,7 @@ body{
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    width: 70%;
+    width: 100%;
     height: 30px;
     border-radius: 20px;
 }

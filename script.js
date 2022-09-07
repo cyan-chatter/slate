@@ -289,10 +289,10 @@ const redcolor = {
     lit : 65
 }
 
-for(let i=0; i<24; ++i){
+for(let i=0; i<10; ++i){
     const color = {
         index : i,
-        hue : i*15,
+        hue : i*18,
         sat : 100,
         lit : 100
     }
@@ -308,10 +308,10 @@ for(let i=0; i<24; ++i){
     if(i===11) addHSLColorToPicker(whitecolor,colorPicker1);
 }
 
-for(let i=0; i<24; ++i){
+for(let i=0; i<10; ++i){
     const color = {
-        index : i+24,
-        hue : i*15,
+        index : i+10,
+        hue : (i+10)*18,
         sat : 100,
         lit : 65
     }
