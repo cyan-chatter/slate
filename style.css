@@ -1,6 +1,7 @@
 :root{
     --defcolor: rgba(40, 231, 190, 1);
     --backcolor: black;
+    --immcolor : rgba(40, 231, 190, 1);
 }
 html{
     background: var(--defcolor);
@@ -137,7 +138,7 @@ body{
     align-items: center;
     height: 100px;
     position: absolute;
-    top: 90%;
+    bottom: 0%;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
@@ -204,7 +205,6 @@ body{
 }
 
 #state {
-    background: var(--backcolor);
     position: absolute;
     bottom: 1em;
     left: 1.5em;
@@ -212,7 +212,6 @@ body{
     min-height: 40px;
     padding: 5px 5px 5px 0px;
     margin: 5px 5px 5px 0px;
-    color: var(--defcolor);
     text-align: center;
     opacity: 1;
     transition: 0.5s, opacity 0.4s ease-in-out;
@@ -229,15 +228,168 @@ body{
     align-items: center;
     justify-content: center;
     flex: 2;
-    border: 1px solid var(--defcolor);
     border-radius: 2rem;
     padding: 5px;
-    transition: 0.2s ease-in-out;
+    transition: 0.2s ease-in-out, background-color 0s;
     visibility: visible;
+    background-color: var(--defcolor);
 }
 
 .stateLogoSvg {
     max-width: 3em;
     max-height: 3em;
-    fill: var(--defcolor)
+    fill: black;
+}
+
+.colorpicker {
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    z-index: 10;
+    display: block;
+    width: 75%;
+    height: auto;
+    background-color: transparent;
+    transition: all 0.8s;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.picker {
+    display: inherit;
+}
+
+.slider-container {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    width: 70%;
+    height: 30px;
+    border-radius: 20px;
+}
+
+.slider {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100%;
+    outline: none;
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.colorpikcer > input {
+    width: 100%;
+}
+
+.hue {
+    background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+    margin-left: auto;
+    margin-right: auto;
+    height: 30px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.satcolor {
+    background-color: transparent;
+}
+
+.sat {
+    background-image: linear-gradient(to right, #494949 0%, transparent 100%), linear-gradient(to right, #fff 0%, transparent 0%);
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border-radius: 1em;
+    height: 10px;
+}
+
+.light {
+    background-image: linear-gradient(to right, #000 0%, transparent 100%), linear-gradient(to right, #fff 0%, transparent 100%);
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border-radius: 1em;
+    height: 10px;
+}
+
+.slider-thin::-webkit-slider-thumb:hover {
+    background-color: white;
+    border-color: black;
+}
+
+.slider-thin::-moz-range-thumb:hover {
+    background-color: white;
+    border-color: black;
+}
+
+.slider-thin::-webkit-slider-thumb {
+    appearance: none;
+    background-color: black;
+    width: 20px;
+    height: 20px;
+    border-radius: 1rem;
+    border: 2px white solid;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+.slider-thin::-moz-range-thumb {
+    appearance: none;
+    background-color: transparent;
+    width: 20px;
+    height: 28px;
+    border-radius: 3px;
+    border-color: transparent;
+    border-bottom: 1px black solid;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+.hue::-webkit-slider-thumb:hover {
+    border: 2px rgb(151, 174, 243) solid;
+    border: 2px rgba(151, 174, 243, 0.8) solid;
+}
+
+.hue::-moz-range-thumb:hover {
+    border: 2px rgb(151, 174, 243) solid;
+    border: 2px rgba(151, 174, 243, 0.8) solid;
+}
+
+.hue::-webkit-slider-thumb {
+    appearance: none;
+    background-color: transparent;
+    width: 20px;
+    height: 29px;
+    border-radius: 3px;
+    border-color: transparent;
+    border-bottom: 1px black solid;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+.hue::-moz-range-thumb {
+    appearance: none;
+    background-color: transparent;
+    width: 20px;
+    height: 28px;
+    border-radius: 3px;
+    border-color: transparent;
+    border-bottom: 1px black solid;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
 }

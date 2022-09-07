@@ -512,6 +512,43 @@ document.getElementById("clearCanvasBtn").addEventListener("click", () => {
 });
 
 
+const addColorSlider = () => {
+  let hue = 130;
+  let sat = 60;
+  let light = 55;
+
+  const getHSL = () => {
+    return `hsl(${hue}, ${sat}%, ${light}%)`;
+  };
+
+  const colorChange = () => {
+    fill = getHSL();
+    r.style.setProperty("--defcolor", fill);
+    document.getElementById("sat").style.backgroundColor = getHSL();
+  };
+
+  const hueInput = document.querySelector("input[name=hue]");
+  hueInput.addEventListener("input", () => {
+    hue = hueInput.value;
+    colorChange();
+  });
+
+  const satInput = document.querySelector("input[name=sat]");
+  satInput.addEventListener("input", () => {
+    sat = satInput.value;
+    colorChange();
+  });
+
+  const lightInput = document.querySelector("input[name=light]");
+  lightInput.addEventListener("input", () => {
+    light = lightInput.value;
+    colorChange();
+  });
+  
+  colorChange();
+}
+
+addColorSlider();
 
 /* NOTES
 
