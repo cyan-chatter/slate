@@ -513,9 +513,9 @@ document.getElementById("clearCanvasBtn").addEventListener("click", () => {
 
 
 const addColorSlider = () => {
-  let hue = 130;
-  let sat = 60;
-  let light = 55;
+  let hue = 180;
+  let sat = 100;
+  let light = 50;
 
   const getHSL = () => {
     return `hsl(${hue}, ${sat}%, ${light}%)`;
