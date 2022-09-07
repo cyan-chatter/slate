@@ -296,16 +296,9 @@ for(let i=0; i<10; ++i){
         sat : 100,
         lit : 100
     }
-
-    if(i%2 == 1){
-        color.lit = 70;
-    } 
-    else{
-        color.lit = 75;
-    }
+    if(i%2) color.lit = 70;
+    else color.lit = 60;
     addHSLColorToPicker(color,colorPicker1);
-
-    if(i===11) addHSLColorToPicker(whitecolor,colorPicker1);
 }
 
 for(let i=0; i<10; ++i){
@@ -313,18 +306,11 @@ for(let i=0; i<10; ++i){
         index : i+10,
         hue : (i+10)*18,
         sat : 100,
-        lit : 65
+        lit : 100
     }
-
-    // if(i%2 == 1){
-    //     color.lit = 70;
-    // } 
-    // else{
-    //     color.lit = 75;
-    // }
-
+    if (i % 2) color.lit = 70;
+    else color.lit = 60;
     addHSLColorToPicker(color,colorPicker2);
-    if(i===11) addHSLColorToPicker(greycolor,colorPicker2);
 }
 
 
