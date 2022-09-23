@@ -261,32 +261,11 @@ const addHSLColorToPicker = (color,parent) => {
     parent.appendChild(colordiv);
 }
 
-const whitecolor = {
-    index : 100,
-    hue : 0,
-    sat : 100,
-    lit : 100
-}
-
-const blackcolor = {
-  index: 100,
-  hue: 0,
-  sat: 0,
-  lit: 0,
-};
-
-const greycolor = {
-    index : 101,
-    hue : 180,
-    sat : 0,
-    lit : 70
-}
-
-const redcolor = {
-    index : 25,
-    hue : 0,
-    sat : 100,
-    lit : 65
+const addSelectedToReplaceClass = (colordiv) => {
+  colordiv.hue = hue;
+  colordiv.sat = sat;
+  colordiv.lit = lit;
+  colordiv.style.background = `hsl(${colordiv.hue},${colordiv.sat}%,${colordiv.lit}%)`; 
 }
 
 for(let i=0; i<10; ++i){
@@ -497,12 +476,12 @@ document.getElementById("clearCanvasBtn").addEventListener("click", () => {
   btnRotation += 180;
 });
 
+//color slider variables 
+let hue = 180;
+let sat = 100;
+let light = 50;
 
 const addColorSlider = () => {
-  let hue = 180;
-  let sat = 100;
-  let light = 50;
-
   const getHSL = () => {
     return `hsl(${hue}, ${sat}%, ${light}%)`;
   };
@@ -535,6 +514,12 @@ const addColorSlider = () => {
 }
 
 addColorSlider();
+
+//TO DO: Persistent Color Circles (to replace default colors)
+// add double click to color circles, when double clicked, and slider is slid to a different color,
+// the color circle will change to the color of the slider
+// when clicked somewhere else, the color reached will persist in the circle
+
 
 /* NOTES
 
