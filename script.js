@@ -261,12 +261,6 @@ const addHSLColorToPicker = (color,parent) => {
     parent.appendChild(colordiv);
 }
 
-const addSelectedToReplaceClass = (colordiv) => {
-  colordiv.hue = hue;
-  colordiv.sat = sat;
-  colordiv.lit = lit;
-  colordiv.style.background = `hsl(${colordiv.hue},${colordiv.sat}%,${colordiv.lit}%)`; 
-}
 
 for(let i=0; i<10; ++i){
     const color = {
@@ -424,6 +418,17 @@ document.querySelectorAll('.color').forEach((e)=>{
         ctx.globalCompositeOperation = "source-over";
         changeStateLogo(isEraser);
     })
+    e.addEventListener('dblclick', (el) => {
+      el.target.hue = hue;
+      el.target.sat = sat;
+      el.target.lit = lit;
+      el.target.style.background = `hsl(${hue},${sat}%,${lit}%)`; 
+      fill = `hsl(${el.target.hue},${el.target.sat}%,${el.target.lit}%)`;
+      r.style.setProperty("--defcolor", fill);
+      isEraser = false;
+      ctx.globalCompositeOperation = "source-over";
+      changeStateLogo(isEraser);
+    })
 })
 
 document.getElementById("header").addEventListener('click', () => location.assign("https://github.com/cyan-chatter"));
@@ -479,11 +484,11 @@ document.getElementById("clearCanvasBtn").addEventListener("click", () => {
 //color slider variables 
 let hue = 180;
 let sat = 100;
-let light = 50;
+let lit = 50;
 
 const addColorSlider = () => {
   const getHSL = () => {
-    return `hsl(${hue}, ${sat}%, ${light}%)`;
+    return `hsl(${hue}, ${sat}%, ${lit}%)`;
   };
 
   const colorChange = () => {
@@ -504,9 +509,9 @@ const addColorSlider = () => {
     colorChange();
   });
 
-  const lightInput = document.querySelector("input[name=light]");
-  lightInput.addEventListener("input", () => {
-    light = lightInput.value;
+  const litInput = document.querySelector("input[name=light]");
+  litInput.addEventListener("input", () => {
+    lit = litInput.value;
     colorChange();
   });
   
@@ -514,12 +519,6 @@ const addColorSlider = () => {
 }
 
 addColorSlider();
-
-//TO DO: Persistent Color Circles (to replace default colors)
-// add double click to color circles, when double clicked, and slider is slid to a different color,
-// the color circle will change to the color of the slider
-// when clicked somewhere else, the color reached will persist in the circle
-
 
 /* NOTES
 
